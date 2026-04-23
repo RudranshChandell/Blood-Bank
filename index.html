@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeStream | Smart Blood Bank Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar / Navigation -->
+        <nav class="sidebar">
+            <div class="logo-container">
+                <img src="blood_bank_logo_1776827914252.png" alt="LifeStream Logo" class="logo">
+                <h1>LifeStream</h1>
+            </div>
+            <ul class="nav-links">
+                <li class="active"><a href="index.html"><span class="icon">📋</span> Registration</a></li>
+                <li><a href="hospitals.html"><span class="icon">🏨</span> Hospitals</a></li>
+                <li><a href="#"><span class="icon">🩸</span> Inventory</a></li>
+                <li><a href="#"><span class="icon">📊</span> Analytics</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <p>© 2026 LifeStream AI</p>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <div class="header-info">
+                    <h2>Patient Registration</h2>
+                    <p>Automate form entry using AI Document Scanning</p>
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=8B0000&color=fff" alt="User">
+                </div>
+            </header>
+
+            <section class="scanner-section">
+                <div class="upload-card" id="drop-zone">
+                    <div class="upload-content">
+                        <div class="scan-icon">📄</div>
+                        <h3>Upload Patient Report</h3>
+                        <p>Drag and drop a PDF report to auto-fill the form</p>
+                        <input type="file" id="pdf-upload" accept="application/pdf" hidden>
+                        <button class="btn-primary" onclick="document.getElementById('pdf-upload').click()">Browse Files</button>
+                    </div>
+                    <div id="scanning-overlay" class="scanning-overlay hidden">
+                        <div class="scanner-line"></div>
+                        <p>Scanning PDF with AI...</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <form id="registration-form" class="glass-form">
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="full-name">Full Name</label>
+                            <input type="text" id="full-name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group small">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" placeholder="25" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender">
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="blood-group">Blood Group</label>
+                            <select id="blood-group" required>
+                                <option value="">Select</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="contact">Contact Number</label>
+                            <input type="tel" id="contact" placeholder="+1 (555) 000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label for="id-number">Patient ID / Gov ID</label>
+                            <input type="text" id="id-number" placeholder="ID-987654">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea id="address" rows="3" placeholder="Residential Address"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="btn-secondary">Clear All</button>
+                        <button type="submit" class="btn-success">Register Patient</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <div id="toast" class="toast hidden">Form filled successfully!</div>
+
+    <script src="app.js"></script>
+</body>
+</html>

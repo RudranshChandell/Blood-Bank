@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeStream | Hospital Network</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Hospital Page Specific Styles */
+        .filter-section {
+            margin-bottom: 2rem;
+        }
+        .search-bar-container {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem !important;
+        }
+        .search-bar-container input {
+            flex: 1;
+        }
+        .hospitals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            padding-bottom: 3rem;
+        }
+        .hospital-card {
+            padding: 1.5rem !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hospital-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.5rem;
+        }
+        .hospital-status {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .hospital-status.active { background: #27ae60; box-shadow: 0 0 5px #27ae60; }
+        .hospital-status.busy { background: #f39c12; box-shadow: 0 0 5px #f39c12; }
+        
+        .location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        .stock-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .blood-pill {
+            background: rgba(211, 47, 47, 0.05);
+            border: 1px solid rgba(211, 47, 47, 0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+        .blood-pill span {
+            font-weight: 400;
+            color: var(--text-muted);
+            margin-left: 4px;
+        }
+        .blood-pill.critical {
+            background: rgba(211, 47, 47, 0.2);
+            border-color: var(--primary-red);
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        .stock-status {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .stock-status.good { color: #27ae60; }
+        .stock-status.critical { color: #e74c3c; }
+        .stock-status.warning { color: #f39c12; }
+        .btn-primary.small {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar / Navigation -->
+        <nav class="sidebar">
+            <div class="logo-container">
+                <img src="blood_bank_logo_1776827914252.png" alt="LifeStream Logo" class="logo">
+                <h1>LifeStream</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span class="icon">📋</span> Registration</a></li>
+                <li class="active"><a href="hospitals.html"><span class="icon">🏨</span> Hospitals</a></li>
+                <li><a href="#"><span class="icon">🩸</span> Inventory</a></li>
+                <li><a href="#"><span class="icon">📊</span> Analytics</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <p>© 2026 LifeStream AI</p>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <div class="header-info">
+                    <h2>Hospital Network</h2>
+                    <p>Monitor blood stock and availability across partner hospitals</p>
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=8B0000&color=fff" alt="User">
+                </div>
+            </header>
+
+            <section class="filter-section">
+                <div class="search-bar-container glass-form">
+                    <input type="text" id="hospital-search" placeholder="Search Hospital by Name or Location (e.g. AIIMS, Mumbai)...">
+                    <select id="stock-filter">
+                        <option value="all">All Stock Levels</option>
+                        <option value="high">High Stock</option>
+                        <option value="low">Low Stock (Critical)</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="hospitals-grid" id="hospital-list">
+                <!-- Javascript will populate this -->
+                <div class="loading-state">
+                    <p>Loading hospital network...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Data and Logic -->
+    <script src="hospitals_data.js"></script>
+    <script src="hospitals.js"></script>
+</body>
+</html>
